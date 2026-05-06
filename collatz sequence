@@ -1,0 +1,41 @@
+def collatz_sequence(n):
+    """
+    Generate the Collatz sequence starting from n until it reaches 1.
+    Rules:
+    - If n is even: n = n // 2
+    - If n is odd:  n = 3 * n + 1
+    """
+    sequence = [n]
+    while n != 1:
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n = 3 * n + 1
+        sequence.append(n)
+    return sequence
+
+
+def main():
+    try:
+        # Get user input
+        user_input = input("Enter a positive integer: ").strip()
+
+        # Validate input
+        if not user_input.isdigit():
+            raise ValueError("Input must be a positive integer.")
+
+        n = int(user_input)
+        if n <= 0:
+            raise ValueError("Number must be greater than zero.")
+
+        # Generate and display the sequence
+        sequence = collatz_sequence(n)
+        print("Collatz sequence:", sequence)
+        print("Length of sequence:", len(sequence))
+
+    except ValueError as e:
+        print("Error:", e)
+
+
+if __name__ == "__main__":
+    main()
